@@ -31,8 +31,8 @@ export default function ProjectsPage() {
             <div className="flex-1 flex flex-col ml-[261px] max-w-[calc(100vw-261px)]">
                 <TopBar title="Projects" />
 
-                <div className="p-6 overflow-x-hidden">
-                    <div className="grid grid-cols-4 gap-6 mb-8">
+                <div className="overflow-x-hidden flex-1">
+                    <div className="grid grid-cols-4 gap-6 py-6 px-4">
                         <StatusCard
                             count={120}
                             label="Total Projects"
@@ -62,17 +62,22 @@ export default function ProjectsPage() {
                             percentLabel="Projects completed"
                         />
                     </div>
+                    <div className='px-4'>
+                        <Header
+                            onViewChange={setView}
+                            currentView={view}
+                            onNewProject={handleNewProject}
+                        />
+                    </div>
+                    <hr />
+                    <div className='p-4'>
 
-                    <Header
-                        onViewChange={setView}
-                        currentView={view}
-                        onNewProject={handleNewProject}
-                    />
 
-                    <KanbanBoard
-                        projects={projects}
-                        onNewProject={handleNewProject}
-                    />
+                        <KanbanBoard
+                            projects={projects}
+                            onNewProject={handleNewProject}
+                        />
+                    </div>
                 </div>
             </div>
 
