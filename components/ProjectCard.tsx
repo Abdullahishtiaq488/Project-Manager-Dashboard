@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowDownRight, Calendar, CornerDownRight, Flag, Users } from 'lucide-react';
+import { ArrowDownRight, Calendar, CornerDownRight, Flag, Users, MoreHorizontal, Circle } from 'lucide-react';
 import { ProjectCardProps } from '@/types';
 
 export function ProjectCard({
@@ -13,18 +13,18 @@ export function ProjectCard({
 }: ProjectCardProps) {
     // Label colors based on priority
     const priorityColors = {
-        Urgent: 'text-red-500 bg-red-50',
-        High: 'text-pink-500 bg-pink-50',
-        Medium: 'text-blue-500 bg-blue-50',
-        Low: 'text-green-500 bg-green-50',
+        'Urgent': 'bg-red-50 text-red-700',
+        'High': 'bg-orange-50 text-orange-700',
+        'Medium': 'bg-blue-50 text-blue-700',
+        'Low': 'bg-gray-50 text-gray-700'
     };
 
     // Priority tag text
     const priorityText = {
-        Urgent: 'Urgent',
-        High: 'High',
-        Medium: 'Medium',
-        Low: 'Low',
+        'Urgent': 'Urgent',
+        'High': 'High',
+        'Medium': 'Medium',
+        'Low': 'Low'
     };
 
     // Progress circle color
@@ -37,12 +37,14 @@ export function ProjectCard({
 
     return (
         <div className="bg-white p-4 rounded-lg shadow-sm cursor-pointer relative">
-            {/* Priority label */}
-            <div className="mb-4 inline-block">
-
+            {/* Priority label and menu */}
+            <div className="flex items-center justify-between mb-4">
                 <span className={`flex px-2 py-1 text-xs font-medium rounded-md ${priorityColors[priority]}`}>
                     <Flag size={16} className='mr-1' /> {priorityText[priority]}
                 </span>
+                <button className="text-gray-400 hover:text-gray-600 p-1">
+                    <MoreHorizontal size={16} />
+                </button>
             </div>
 
             {/* Project title */}
@@ -79,17 +81,22 @@ export function ProjectCard({
                         <span>5</span>
                     </div>
 
+                    {/* Divider */}
+                    <div className="text-gray-300">|</div>
+
                     {/* Date */}
                     <div className="flex items-center">
                         <Calendar size={14} className="mr-1" />
                         <span>{date}</span>
                     </div>
 
+                    {/* Divider */}
+                    <div className="text-gray-300">|</div>
+
                     {/* Progress indicator */}
                     <div className="flex items-center">
-                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${getProgressColor(progress)}`}>
-                            <span className="text-[10px] font-medium">{progress}%</span>
-                        </div>
+                        <Circle size={14} className={`mr-1 ${getProgressColor(progress)}`} />
+                        <span>{progress}%</span>
                     </div>
                 </div>
             </div>

@@ -56,6 +56,7 @@ export interface TopBarProps {
 }
 
 export interface NewProjectModalProps {
+  isOpen: boolean;
   onClose: () => void;
   onAddProject: (project: Project) => void;
 } 

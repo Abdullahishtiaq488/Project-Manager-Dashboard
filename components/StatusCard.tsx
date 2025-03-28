@@ -47,7 +47,7 @@ export function StatusCard({ count, label, color, percent, percentLabel }: Statu
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-5">
+    <div className="bg-white w-[270px] h-[139px] rounded-[20px] border-[0.7px] border-gray-200 p-4 flex flex-col justify-center">
       <div className="flex justify-center items-start gap-4">
         {/* Icon with background */}
         <div className={`w-14 h-14 ${iconBgColors[color]} rounded-full flex items-center justify-center`}>

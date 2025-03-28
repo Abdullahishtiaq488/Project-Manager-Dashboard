@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Plus, MoreHorizontal } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { ProjectCard } from './ProjectCard';
 import { KanbanBoardProps, Column, Project } from '@/types';
 
@@ -97,32 +97,27 @@ export function KanbanBoard({ projects, onNewProject }: KanbanBoardProps) {
             {columns.map((column) => (
                 <div
                     key={column.id}
-                    className="bg-gray-50 rounded-xl"
+                    className="rounded-xl"
                     onDragOver={handleDragOver}
                     onDrop={() => handleDrop(column.id)}
                 >
                     <div className="py-4 px-1">
                         <div className="flex items-center gap-2 bg-gray-100 rounded-md p-2">
                             <div className={`w-2.5 h-2.5 rounded-full ${getStatusCircleColor(column.title)}`}></div>
-                            <h3 className="text-sm font-medium text-gray-800">{column.title}</h3>
+                            <h3 className="text-base font-medium text-gray-800">{column.title}</h3>
                             <span className="text-gray-500 ml-1">{column.count}</span>
                         </div>
                     </div>
 
-                    <div className="px-2 space-y-2">
+                    <div className="p-1 space-y-2">
                         {column.projects.map((project) => (
                             <div
                                 key={project.id}
                                 draggable
                                 onDragStart={() => handleDragStart(project.id, column.id)}
                                 onDragEnd={handleDragEnd}
-                                className={`group ${draggingProjectId === project.id ? 'opacity-50 shadow-lg' : ''}`}
+                                className={draggingProjectId === project.id ? 'opacity-50 shadow-lg' : ''}
                             >
-                                <div className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button className="p-1 rounded hover:bg-gray-100">
-                                        <MoreHorizontal size={16} className="text-gray-400" />
-                                    </button>
-                                </div>
                                 <ProjectCard
                                     title={project.title}
                                     subtitle={project.subtitle}
@@ -134,17 +129,15 @@ export function KanbanBoard({ projects, onNewProject }: KanbanBoardProps) {
                             </div>
                         ))}
 
-                        {column.projects.length === 0 && (
-                            <div
-                                className="border-2 border-dashed border-gray-200 rounded-md h-[80px] flex items-center justify-center text-sm text-gray-400 mb-2"
-                                onClick={onNewProject}
-                            >
-                                <div className="flex flex-col items-center gap-1 cursor-pointer">
-                                    <Plus size={18} className="text-gray-300" />
-                                    <span>Add a card</span>
-                                </div>
+                        <div
+                            className="border-2 border-dashed border-gray-200 rounded-md h-[80px] flex items-center justify-center text-sm text-gray-400 mb-2"
+                            onClick={onNewProject}
+                        >
+                            <div className="flex flex-col items-center gap-1 cursor-pointer">
+                                <Plus size={18} className="text-gray-300" />
+                                <span>Add a card</span>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             ))}
